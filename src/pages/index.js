@@ -1,6 +1,11 @@
 import React from "react"
 import Header from '../components/Header';
 
+import Hero from '../components/Responsive/hero'
+import Row from '../components/Responsive/row';
+
+import smallComputer from '../images/computer_small.png';
+
 const data = {
     intro : {
         title: 'IT For Small Business',
@@ -27,58 +32,55 @@ const data = {
 }
 
 const Intro = (props) => (
-    <div>
+    <Row>
         <div class="large-4 columns"></div>
         <div class="large-8 columns" id="intro-text">
             <h1>{props.title}</h1>
             <h3>{props.content}<br />
             </h3>
         </div>
-    </div>
+    </Row>
 )
 
 const About = (props) => (
-    <div>
+    <Row>
         <div class="medium-6 columns">
             <h1 class="text-left">{props.title}</h1>
             <hr />
             <p>{props.content}</p>
         </div>
         <div class="medium-6 columns show-for-medium-up">
-            <img class="hide-for-small-only" src="images/computer_small.png" alt="about JDavis Solutions LLC"/>
+            <img class="hide-for-small-only" src={smallComputer} alt="about JDavis Solutions LLC"/>
         </div>
-    </div>
+    </Row>
 )
 
 const Service = (props) => (
-    <div class="large-4 columns">
-        <h3 class="subheader text-center subheadertext">{props.title}</h3>
-        <p>{props.content}</p>
-    </div>
+    <Row>
+        <h1 class="text-left">Services</h1>
+        <hr />
+        <div class="large-4 columns">
+        {props.content.map(service => (
+            <div>
+            <h3 class="subheader text-center subheadertext">{service.title}</h3>
+            <p>{service.content}</p>
+            </div>
+        ))}
+        </div>
+    </Row>
 )
 
 export default () => (
     <div>
         <Header /> 
         <div class="hero" id="intro-hero" />
-        <div class="row intro">
-            <Intro title={data.intro.title} content={data.intro.content} />
-        </div>
-      
-      <div class="hero" id="about">
-        <div class="row">
+        <Intro title={data.intro.title} content={data.intro.content} /> 
+        <Hero>
             <About title={data.about.title} content={data.about.content} />
-        </div>
-      </div>
+        </Hero>
 
-      <div class="hero" id="services">
-        <div class="row">
-            <h1 class="text-left">Services</h1>
-            <hr />
-            {data.services.map(service => (
-                <Service title={service.title} content={service.content} />
-            ))}
-        </div>
-      </div>	
+        <Hero>          
+            <Service content={data.services} />
+        </Hero>	
     </div>
 )

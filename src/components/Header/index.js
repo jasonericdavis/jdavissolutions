@@ -1,11 +1,13 @@
 import React from 'react';
 
+import logo from '../../images/JDavisSolutionsLogoAlt.png';
+
 const Header = () => (
 <div class="fixed">
     <nav class="top-bar" data-topbar role="navigation">
       <ul class="title-area">
         <li class="name">
-          <h1><a><img src="/images/JDavisSolutionsLogoAlt.png" alt="JDavis Solutions LLC" /></a></h1>
+          <h1><a><img src={logo} alt="JDavis Solutions LLC" /></a></h1>
         </li>
       </ul>
       <section class="top-bar-section">
